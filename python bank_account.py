@@ -1,4 +1,3 @@
-
 class BankAccount:
     def __init__(self, account_holder, initial_balance=0):
         self.account_holder = account_holder
@@ -25,8 +24,18 @@ class BankAccount:
         print(f"Current balance: {self.balance}.")
 
 if __name__ == "__main__":
-    account_holder_name = input("Enter the account holder's name: ")
-    initial_balance = float(input("Enter the initial balance: "))
+    print("Welcome to the Banking System!")
+    
+    while True:
+        try:
+            account_holder_name = input("Enter the account holder's name: ")
+            initial_balance = float(input("Enter the initial balance: "))
+            if initial_balance < 0:
+                raise ValueError("Initial balance cannot be negative.")
+            break
+        except ValueError as e:
+            print(f"Error: {e}. Please enter a valid amount.")
+    
     account = BankAccount(account_holder_name, initial_balance)
 
     while True:
@@ -38,11 +47,17 @@ if __name__ == "__main__":
         
         choice = input("Choose an option (1-4): ")
         if choice == '1':
-            deposit_amount = float(input("Enter amount to deposit: "))
-            account.deposit(deposit_amount)
+            try:
+                deposit_amount = float(input("Enter amount to deposit: "))
+                account.deposit(deposit_amount)
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.")
         elif choice == '2':
-            withdraw_amount = float(input("Enter amount to withdraw: "))
-            account.withdraw(withdraw_amount)
+            try:
+                withdraw_amount = float(input("Enter amount to withdraw: "))
+                account.withdraw(withdraw_amount)
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.")
         elif choice == '3':
             account.check_balance()
         elif choice == '4':
@@ -50,4 +65,3 @@ if __name__ == "__main__":
             break
         else:
             print("Invalid choice. Please choose a valid option.")
-
