@@ -29,7 +29,3 @@ python bank_account.py
    - Press `2` to withdraw money.
    - Press `3` to check your balance.
    - Press `4` to exit.
-
-## Contributing
-If you'd like to contribute, fork the repository and submit a pull request with your changes.
-
